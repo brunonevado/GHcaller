@@ -1,0 +1,42 @@
+# Examples for GHcaller. Folder /examples contains
+
+  # test.original.fas: original sequences for 5 diploid individuals (2 sequences per individual) 
+  # test.Ind1-5.realigned.bam: bam files obtained by simulating a 8x paired-end sequencing run, followed by alignment with bwa and realignment around indels with GATK
+  # test.Ind1-5.realigned.bam.bai: bam index files
+  # test.reference.fas: reference "genome" used for alignment
+  # test.reference.fas.fai: index of reference genome
+  # test.5inds.8X.mpileup: mpileup file, obtained with samtools, for the 5 individuals' bam files, chromosome 1
+  # res1-8.fas: output of the examples below
+  # regions.bed: example bed file
+
+# 1. With all default values, only need to provide an output file.
+
+cat test.5inds.8X.mpileup | ./GHcaller -outfile res1.fas
+
+# 2. Setting baseQ thresholds and minimum and maximum depths different from default.
+
+cat test.5inds.8X.mpileup | ./GHcaller -outfile res2.fas -baseq 30 -mindep 4 -maxdep 15
+
+# 3. baseQ thresholds and minimum and maximum depths different for each individual.
+
+cat test.5inds.8X.mpileup | ./GHcaller -outfile res3.fas -baseq 30,20,10,20,20 -mindep 4,3,3,3,5 -maxdep 15,20,20,20,20
+
+# 4. Add reference sequence in the output fasta file (will add N's to the end of each sequence).
+
+cat test.5inds.8X.mpileup | ./GHcaller -outfile res4.fas -outgroup test.reference.fas
+
+# 5. output with iupac codes. Haplotype calls will use lower-case a,c,g,t; Genotype calls upper-case A,C,G,T.
+
+cat test.5inds.8X.mpileup | ./GHcaller -outfile res5.fas -iupac 1
+
+# 6. use a different threshold for genotype/haplotype calls: min 10 reads and LRT significant at p 0.01 (with 1 d.f., chivalue = 6.6348)
+
+cat test.5inds.8X.mpileup | ./GHcaller -outfile res6.fas -chivalue 6.6348 -minreads 10
+
+# 7. names to use in output fasta file can be specified, and the program run silently. Also, mpileup data can be obtained directly with samtools without writing to disk
+
+samtools mpileup -f test.reference.fas -r chr1 test.ind1.realigned.bam test.ind2.realigned.bam test.ind3.realigned.bam test.ind4.realigned.bam test.ind5.realigned.bam | ./GHcaller -outfile res7.fas -names individual1,individual2,individual3,individual4,individual5 -verbose 0
+
+# 8. using a bed file to generate output only on specified regions
+
+cat test.5inds.8X.mpileup | ./GHcaller -outfile res8.fas -bed regions.bed -concatenate 1
