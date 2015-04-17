@@ -11,7 +11,9 @@ Mac: clang++ -std=c++11 -stdlib=libc++ -O3 -Wall *.cpp -o GHcaller (for Mac, cla
 Description: 
  
 Genotype-Haplotype SNP calling from mpileup data  
-Input: mpileup data from STDIN, for a single chromosome, e.g. "samtools mpileup -r chr1 infile1.bam infile2.bam > data.chr1.mpileup" Output: fasta file 
+Input: mpileup data from STDIN, for a single chromosome, 
+  e.g. "samtools mpileup -r chr1 infile1.bam infile2.bam > data.chr1.mpileup" 
+Output: fasta file 
  
  
 Usage: cat data.mpileup | GHcaller -outfile outfile [ filtering options ] [ SNP calling options ] [ Output options ] 
@@ -43,6 +45,6 @@ Algorithm is based on :
 Lynch (2009) Genetics 182: 295-301  
 Roesti et al. (2012) Molecular Ecology 21: 2852–2862. 
  
-This code has been parially developed thanks to the Grant CGL2009-09346 (MICINN, Spain).  
+This code has been partially developed thanks to the Grant CGL2009-09346 (MICINN, Spain).  
 Also available from : http://bioinformatics.cragenomica.es/numgenomics/people/sebas/software/software.html  
 Contact: bruno.nevado@gmail.com 
