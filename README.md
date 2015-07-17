@@ -2,11 +2,18 @@ Genotype/Haplotype SNP caller
  
 Authors: B. Nevado & S. Ramos-Onsins (used in B. Nevado, S.E. Ramos-Onsins and M. Perez-Enciso Mol.Ecol. 2014) 
  
-Installation:  
+Installation (linux): 
+
+git clone https://github.com/brunonevado/GHcaller.git 
+cd GHcaller 
+make 
+./GHcaller -help 
  
+Installation (if above doesnt work/apply, type from within /source): 
 Linux: g++ -Wall -g -std=c++0x -O3 *.cpp -o GHcaller  
 Mac: clang++ -std=c++11 -stdlib=libc++ -O3 -Wall *.cpp -o GHcaller (for Mac, clang++ needs to be version 4+) 
  
+ ./GHcaller -help 
  
 Description: 
  
