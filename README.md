@@ -4,14 +4,14 @@ Authors: B. Nevado & S. Ramos-Onsins (used in B. Nevado, S.E. Ramos-Onsins and M
  
 Installation (linux): 
 
-git clone https://github.com/brunonevado/GHcaller.git 
-cd GHcaller 
-make 
-./GHcaller -help 
+git clone https://github.com/brunonevado/GHcaller.git  
+cd GHcaller  
+make  
+./GHcaller -help  
  
-Installation (if above doesnt work/apply, type from within /source): 
+Installation (if above doesnt work/apply, type from within /source):  
 Linux: g++ -Wall -g -std=c++0x -O3 *.cpp -o GHcaller  
-Mac: clang++ -std=c++11 -stdlib=libc++ -O3 -Wall *.cpp -o GHcaller (for Mac, clang++ needs to be version 4+) 
+Mac: clang++ -std=c++11 -stdlib=libc++ -O3 -Wall *.cpp -o GHcaller (for Mac, clang++ needs to be version 4+)  
  
  ./GHcaller -help 
  
